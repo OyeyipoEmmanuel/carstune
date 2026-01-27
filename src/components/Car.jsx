@@ -1,9 +1,11 @@
 import { Suspense } from "react";
-import { FreeCarTestModel } from "../../Free_merc_hovercar";
 import { BmwTestCar } from "../../Bmw";
+import { useThree } from "@react-three/fiber";
 
 // components/Car.jsx
 const Car = () => {
+  const { viewport } = useThree(); // gives info about canvas size
+  const isMobile = viewport.width < 6;
   return (
     // <mesh castShadow position={[0, 0.75, 0]}>
     //   <boxGeometry args={[1, 1, 1]} />
@@ -12,7 +14,7 @@ const Car = () => {
 
     <Suspense fallback={null}>
         {/* <FreeCarTestModel scale={2.5} /> */}
-        <BmwTestCar scale={2}/>
+        <BmwTestCar scale={isMobile ? .4 : 2.5} />
     </Suspense>
   );
 };
