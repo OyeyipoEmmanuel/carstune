@@ -1,9 +1,9 @@
 // components/Scene.jsx
 import { Suspense } from "react";
-import { Environment } from "@react-three/drei";
+// import { Environment } from "@react-three/drei";
 import Controls from "./Controls";
 import Car from "./Car";
-import Ground from "./Ground";
+// import Ground from "./Ground";
 
 const Scene = () => {
   return (

@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { FreeCarTestModel } from "../../Free_merc_hovercar";
 import { BmwTestCar } from "../../Bmw";
 
 // components/Car.jsx
