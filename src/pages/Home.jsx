@@ -20,7 +20,7 @@ const Home = () => {
         </div>
 
         {/* Canvas */}
-        <Canvas dpr={[1, 2]} camera={{ position: [0, 3, 8], fov: 45 }}>
+        <Canvas dpr={[1, 2]} camera={{ position: [0, 3, 8], fov: 45, near: 0.1, far: 100 }}>
           <color attach="background" args={["#F8F9FA"]} />
           <Scene />
         </Canvas>
