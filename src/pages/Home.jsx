@@ -27,7 +27,7 @@ const Home = () => {
       </section>
 
       {/* MOBILE ACTIONS */}
-      <section className="md:hidden absolute bottom-0 h-36 left-0 w-full p-4 text-white z-20 flex items-end gap-x-8">
+      <section className="md:hidden absolute bottom-0 h-36 left-0 w-full p-4 text-white z-20 flex items-center gap-x-8">
         <ActionButton onClick={() => setOpenMobileNav(true)}>
           <p className="relative group-hover:text-white z-10 text-center w-full">Customize</p>
         </ActionButton>
