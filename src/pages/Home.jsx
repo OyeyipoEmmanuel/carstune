@@ -1,23 +1,72 @@
 // pages/Home.jsx
 import { Canvas } from "@react-three/fiber";
 import Scene from "../components/Scene";
+import SideNav from "../components/UI/SideNav";
+import { useState } from "react";
+import { CircleX } from "lucide-react";
+import ActionButton from "../components/UI/ActionButton";
 
 const Home = () => {
+  const [openMobileNav, setOpenMobileNav] = useState(false);
   return (
-    <>
-      <main className="absolute w-full h-screen top-0 left-0 z-10 flex flex-col items-center justify-center pointer-events-none">
-        <section className="mx-auto text-center">
-          <h1 className="text-2xl font-semibold pt-6 text-white">Welcome to Carstune MVP</h1>
-        </section>
-      </main>
-      <Canvas
-        dpr={[1, 2]}
-        camera={{ position: [0, 3, 8], fov: 45 }}
+    <main className="w-full h-screen flex shrink-0 relative overflow-hidden">
+      {/* LEFT: 3D VIEWER (70%) */}
+      <section className="flex-7 shrink-0 h-full relative">
+        {/* Title overlay */}
+        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none text-center">
+          <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-[linear-gradient(125deg,black,gray)] drop-shadow-md">
+            Carstune
+          </h1>
+        </div>
+
+        {/* Canvas */}
+        <Canvas dpr={[1, 2]} camera={{ position: [0, 3, 8], fov: 45, near: 0.1, far: 100 }}>
+          <color attach="background" args={["#F8F9FA"]} />
+          <Scene />
+        </Canvas>
+      </section>
+
+      {/* MOBILE ACTIONS */}
+      <section className="md:hidden absolute bottom-0 h-36 left-0 w-full p-4 text-white z-20 flex items-center gap-x-8">
+        <ActionButton onClick={() => setOpenMobileNav(true)}>
+          <p className="relative group-hover:text-white z-10 text-center w-full">Customize</p>
+        </ActionButton>
+
+        <ActionButton>
+          <p className="relative group-hover:text-white z-10 text-center w-full">AR Mode</p>
+        </ActionButton>
+      </section>
+
+      {/* Mobile Nav */}
+      <section
+        className="md:hidden absolute bottom-0 left-0 w-full h-[30vh] z-20 bg-white p-4 shadow-lg rounded-t-4xl transform transition-transform duration-300 ease-in-out"
+        style={{
+          transform: openMobileNav ? "translateY(0)" : "translateY(100%)",
+        }}
       >
-        <color attach="background" args={["#213547"]} />
-        <Scene />
-      </Canvas>
-    </>
+        <div className="absolute right-4 font-semibold text-3xl top-4 text-red-500">
+          <CircleX
+            size={30}
+            strokeWidth={1}
+            absoluteStrokeWidth
+            className="cursor-pointer"
+            onClick={() => setOpenMobileNav(false)}
+          />
+        </div>
+        <div className="flex flex-col h-full">
+          <h1 className="text-xl font-semibold mb-4">Edit car model</h1>
+
+          <span className="py-4">Select Color</span>
+
+          <span>Select Wheels</span>
+        </div>
+      </section>
+
+      {/* RIGHT: SIDENAV (30%) */}
+      <section className="hidden md:flex flex-3 h-full z-20">
+        <SideNav />
+      </section>
+    </main>
   );
 };
 
