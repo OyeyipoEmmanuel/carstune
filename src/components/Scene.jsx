@@ -30,6 +30,7 @@ const Scene = () => {
           <Car />
           {/* <Ground /> */}
           <ambientLight intensity={0.5} />
+          <spotLight intensity={80} color={0xffffff} position={[2, 5, 1]}/>
         </Controls>
       </Suspense>
     </>
