@@ -5,10 +5,22 @@ Command: npx gltfjsx@6.5.3 public/model/carModel.glb
 
 
 import { useGLTF } from '@react-three/drei'
-
+import { useEffect, useState } from 'react'
 
 export function CarModel(props) {
-  const { nodes, materials } = useGLTF('/model/carModel.glb')
+  const [modelPath, setModelPath] = useState('/model/carModel.glb');
+
+  useEffect(() => {
+    // Detect Android or low-end devices
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isLowRAM = navigator.deviceMemory && navigator.deviceMemory < 4;
+    
+    if (isAndroid || isLowRAM) {
+      setModelPath('/model/correctCarOpt-lite2.glb');
+    }
+  }, []);
+
+  const { nodes, materials } = useGLTF(modelPath);
   return (
     <group {...props} dispose={null}>
       <group position={[-0.954, 0.585, 0.938]} rotation={[-Math.PI, 0, 0]} scale={-1}>
@@ -176,4 +188,7 @@ export function CarModel(props) {
   )
 }
 
+
+// Preload both versions
 useGLTF.preload('/model/carModel.glb')
+useGLTF.preload('/model/correctCarOpt-lite2.glb')

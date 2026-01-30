@@ -1,22 +1,17 @@
 // components/Controls.jsx
-import {
-  OrbitControls,
-  Stage,
-} from "@react-three/drei";
+import { Environment, OrbitControls, Stage } from "@react-three/drei";
+import { useEffect, useState } from "react";
 
 const Controls = ({ children }) => {
+  const [isAndroid, setIsAndroid] = useState(false);
+
+  useEffect(() => {
+    setIsAndroid(/Android/i.test(navigator.userAgent));
+  }, []);
   return (
-    // <PresentationControls
-    //   speed={1.0}
-    //   global
-    //   zoom={1.2}
-    //   polar={[-0.1, Math.PI / 4]}
-    //   rotation={[Math.PI /16, Math.PI / 2, 0]}
-    // >
     <>
-      {/* <PerspectiveCamera makeDefault fov={45} position={[0, 2.5, 7]} /> */}
       <OrbitControls
-        target={[0, 0.5, 0]}
+        target={[0, 0.3, 0]}
         enablePan={true}
         minDistance={3}
         maxDistance={10}
@@ -25,10 +20,29 @@ const Controls = ({ children }) => {
         enableDamping
         dampingFactor={0.08}
       />
-      <Stage intensity={0.6}>{children}</Stage>
-    </>
 
-    // </PresentationControls>
+      {isAndroid ? (
+        // Android: no Stage, just children
+        children
+      ) : (
+        // Desktop/iOS: Stage + local Environment
+        <>
+          <Environment
+            files="/hdr/kiara_1_dawn_1k.hdr" // Your local HDR file
+            background={false}
+            // intensity={0.3} // ← Add this to control HDR brightness
+          />
+          <Stage
+            intensity={0.3}
+            environment={null} // Disable Stage's environment since we're using separate Environment component
+            shadows="contact"
+            adjustCamera={false}
+          >
+            {children}
+          </Stage>
+        </>
+      )}
+    </>
   );
 };
 

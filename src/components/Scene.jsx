@@ -62,7 +62,7 @@ const Scene = () => {
         <Controls>
           {/* <Environment preset="city" background={false} /> */}
           <Car />
-          <ambientLight intensity={isAndroid ? 1 : 0.3} />
+           <ambientLight intensity={isAndroid ? 1 : 0.3} />
 
           <directionalLight
             position={[5, 5, 5]}
