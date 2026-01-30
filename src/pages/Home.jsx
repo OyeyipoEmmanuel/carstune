@@ -5,11 +5,10 @@ import SideNav from "../components/UI/SideNav";
 import { useState } from "react";
 import { CircleX } from "lucide-react";
 import ActionButton from "../components/UI/ActionButton";
-import Loader from "../components/UI/Loader";
 
 const Home = () => {
   const [openMobileNav, setOpenMobileNav] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   return (
     <main className="w-full h-screen flex shrink-0 relative overflow-hidden bg-[#F8F9FA]">
       {/* Show loader while loading */}
