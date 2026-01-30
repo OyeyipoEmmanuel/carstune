@@ -21,15 +21,15 @@ function Loader() {
   return (
     <Html fullscreen>
       <div
-        className="w-full h-full flex items-center justify-center bg-[#F8F9FA] transition-opacity duration-500"
+        className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-neutral-700 transition-opacity duration-500"
         style={{ opacity }}
       >
         <div className="flex flex-col items-center gap-4">
-          <div className="w-16 h-16 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
-          <p className="text-black font-semibold text-xl">
+          <div className="w-16 h-16 border-4 border-gray-600 border-t-white rounded-full animate-spin drop-shadow-lg"></div>
+          <p className="text-white font-semibold text-xl">
             {progress < 100 ? `${Math.round(progress)}%` : "Almost ready..."}
           </p>
-          <p className="text-gray-600">Loading car model...</p>
+          <p className="text-gray-300">Loading car model...</p>
         </div>
       </div>
     </Html>
