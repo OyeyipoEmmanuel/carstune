@@ -175,4 +175,4 @@ export function CarModel(props) {
   )
 }
 
-useGLTF.preload('/carModel.glb')
+useGLTF.preload('/model/carModel.glb')
