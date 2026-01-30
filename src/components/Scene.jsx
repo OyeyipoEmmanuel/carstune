@@ -5,7 +5,7 @@ import Controls from "./Controls";
 import Car from "./Car";
 // import Ground from "./Ground";
 
-import { Html, useProgress } from "@react-three/drei";
+import { Environment, Html, useProgress } from "@react-three/drei";
 
 function Loader() {
   const { progress, active } = useProgress();
@@ -42,8 +42,16 @@ const Scene = () => {
 
       <Suspense fallback={<Loader />}>
         <Controls>
+          {/* <Environment preset="city" background={false} /> */}
+
           <Car />
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={0.3} />
+    <directionalLight 
+      position={[5, 5, 5]} 
+      intensity={1} 
+      castShadow 
+      shadow-mapSize={[2048, 2048]}
+    />
         </Controls>
       </Suspense>
     </>

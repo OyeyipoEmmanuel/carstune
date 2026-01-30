@@ -19,7 +19,7 @@ const Controls = ({ children }) => {
       {/* <PerspectiveCamera makeDefault fov={45} position={[0, 2.5, 7]} /> */}
       <OrbitControls
         target={[0, 0.5, 0]}
-        enablePan={false}
+        enablePan={true}
         minDistance={3}
         maxDistance={10}
         minPolarAngle={0.3}
