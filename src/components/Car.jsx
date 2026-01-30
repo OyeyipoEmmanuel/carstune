@@ -17,7 +17,7 @@ const Car = () => {
     <Suspense fallback={null}>
         {/* <FreeCarTestModel scale={2.5} /> */}
         {/* <BmwTestCar scale={isMobile ? .4 : 2.5} /> */}
-        <CarModel scale={isMobile ? 1 : 4} />
+        <CarModel scale={isMobile ? 0.8 : 4.5} />
     </Suspense>
   );
 };
