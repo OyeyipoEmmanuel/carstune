@@ -1,5 +1,10 @@
 // components/Controls.jsx
-import { PresentationControls, Stage } from "@react-three/drei";
+import {
+  OrbitControls,
+  PerspectiveCamera,
+  PresentationControls,
+  Stage,
+} from "@react-three/drei";
 
 const Controls = ({ children }) => {
   return (
@@ -10,9 +15,21 @@ const Controls = ({ children }) => {
       polar={[-0.1, Math.PI / 4]}
       rotation={[Math.PI /16, Math.PI / 2, 0]}
     >
-      <Stage intensity={0.6}>
-        {children}
-      </Stage>
+    <>
+      {/* <PerspectiveCamera makeDefault fov={45} position={[0, 2.5, 7]} /> */}
+       {/* <OrbitControls
+        target={[0, 25, 0]}
+        enablePan={false}
+        minDistance={2.5}
+        maxDistance={8}
+        minPolarAngle={0.3}
+        maxPolarAngle={1.35}
+        enableDamping
+        dampingFactor={0.08}
+      /> */}
+      <Stage intensity={0.6}>{children}</Stage>
+    </>
+
     </PresentationControls>
   );
 };
