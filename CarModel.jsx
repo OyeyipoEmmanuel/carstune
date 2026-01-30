@@ -6,6 +6,7 @@ Command: npx gltfjsx@6.5.3 public/model/carModel.glb
 
 import { useGLTF } from '@react-three/drei'
 
+
 export function CarModel(props) {
   const { nodes, materials } = useGLTF('/model/carModel.glb')
   return (

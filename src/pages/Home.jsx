@@ -2,19 +2,25 @@
 import { Canvas } from "@react-three/fiber";
 import Scene from "../components/Scene";
 import SideNav from "../components/UI/SideNav";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CircleX } from "lucide-react";
 import ActionButton from "../components/UI/ActionButton";
 
 const Home = () => {
   const [openMobileNav, setOpenMobileNav] = useState(false);
+  const [isAndroid, setIsAndroid] = useState(false);
+
+  useEffect(() => {
+    setIsAndroid(/Android/i.test(navigator.userAgent));
+  }, []);
+
   // const [isLoading, setIsLoading] = useState(true);
   return (
     <main className="w-full h-screen flex shrink-0 relative overflow-hidden bg-[#F8F9FA]">
       {/* Show loader while loading */}
       {/* {isLoading && <Loader />} */}
       {/* LEFT: 3D VIEWER (70%) */}
-      <section className="flex-7 shrink-0 h-[calc(100vh-10rem)] md:h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-neutral-700 relative rounded-b-4xl md:rounded-none overflow-hidden">
+      <section className="flex-7 shrink-0 h-[calc(100vh-7rem)] md:h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-neutral-700 relative rounded-b-4xl md:rounded-none overflow-hidden">
         {/* Title overlay */}
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none text-center">
           <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-[linear-gradient(125deg,#ffffff,#9ca3af)] drop-shadow-md">
@@ -28,8 +34,13 @@ const Home = () => {
         {/* Canvas */}
         <div className="w-full h-full absolute top-0 pt-12 md:top-12 left-0 ">
           <Canvas
-            dpr={[1, 2]}
+            dpr={isAndroid ? [1, 1] : [1, 2]}
             camera={{ position: [0, 1.5, 5], fov: 25 }}
+            gl={{
+              antialias: !isAndroid, // Disable only on Android
+              powerPreference: "high-performance",
+            }}
+            performance={{ min: 0.5 }}
             // onCreated={() => setIsLoading(false)}
           >
             {/* <color attach="background" args={["#F8F9FA"]} /> */}

@@ -5,8 +5,9 @@ import Controls from "./Controls";
 import Car from "./Car";
 // import Ground from "./Ground";
 
-import {Html, useProgress } from "@react-three/drei";
+import { Html, useProgress } from "@react-three/drei";
 
+//Loading component
 function Loader() {
   const { progress, active } = useProgress();
   const [isHiding, setIsHiding] = useState(false);
@@ -45,7 +46,14 @@ function Loader() {
     </Html>
   );
 }
+
 const Scene = () => {
+  const [isAndroid, setIsAndroid] = useState(false);
+
+  useEffect(() => {
+    setIsAndroid(/Android/i.test(navigator.userAgent));
+  }, []);
+
   return (
     <>
       {/* <fog attach="fog" args={["#213547", 10, 20]} /> */}
@@ -53,14 +61,14 @@ const Scene = () => {
       <Suspense fallback={<Loader />}>
         <Controls>
           {/* <Environment preset="city" background={false} /> */}
-
           <Car />
-          <ambientLight intensity={0.3} />
+          <ambientLight intensity={isAndroid ? 1 : 0.3} />
+
           <directionalLight
             position={[5, 5, 5]}
             intensity={1}
-            castShadow
-            shadow-mapSize={[2048, 2048]}
+            castShadow={!isAndroid} // Disable shadows on Android
+            shadow-mapSize={isAndroid ? [512, 512] : [2048, 2048]}
           />
         </Controls>
       </Suspense>
