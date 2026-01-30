@@ -5,7 +5,7 @@ import Controls from "./Controls";
 import Car from "./Car";
 // import Ground from "./Ground";
 
-import { Environment, Html, useProgress } from "@react-three/drei";
+import {Html, useProgress } from "@react-three/drei";
 
 function Loader() {
   const { progress, active } = useProgress();

@@ -1,8 +1,6 @@
 // components/Controls.jsx
 import {
   OrbitControls,
-  PerspectiveCamera,
-  PresentationControls,
   Stage,
 } from "@react-three/drei";
 

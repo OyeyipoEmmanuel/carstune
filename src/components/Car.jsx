@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { BmwTestCar } from "../../Bmw";
 import { useThree } from "@react-three/fiber";
 import { CarModel } from "../../CarModel";
 
@@ -16,7 +15,6 @@ const Car = () => {
 
     <Suspense fallback={null}>
         {/* <FreeCarTestModel scale={2.5} /> */}
-        {/* <BmwTestCar scale={isMobile ? .4 : 2.5} /> */}
         <CarModel scale={isMobile ? 0.8 : 4.5} />
     </Suspense>
   );
