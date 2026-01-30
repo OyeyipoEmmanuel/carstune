@@ -14,7 +14,7 @@ const Home = () => {
       {/* Show loader while loading */}
       {/* {isLoading && <Loader />} */}
       {/* LEFT: 3D VIEWER (70%) */}
-      <section className="flex-7 shrink-0 h-[85%] md:h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-neutral-700 relative">
+      <section className="flex-7 shrink-0 h-[65%] md:h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-neutral-700 relative">
         {/* Title overlay */}
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none text-center">
           <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-[linear-gradient(125deg,#ffffff,#9ca3af)] drop-shadow-md">
@@ -39,7 +39,7 @@ const Home = () => {
       </section>
 
       {/* MOBILE ACTIONS */}
-      <section className="md:hidden absolute bottom-0 h-[15%] left-0 w-full p-4 text-white z-20 flex items-center gap-x-8">
+      <section className="md:hidden absolute bottom-0 h-[35%] left-0 w-full p-4 text-white z-20 flex items-center gap-x-8">
         <ActionButton onClick={() => setOpenMobileNav(true)}>
           <p className="relative group-hover:text-white z-10 text-center w-full">
             Customize
