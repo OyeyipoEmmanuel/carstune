@@ -5,12 +5,22 @@ import Controls from "./Controls";
 import Car from "./Car";
 // import Ground from "./Ground";
 
-import { Html } from "@react-three/drei";
+import { Html, useProgress } from "@react-three/drei";
 
 function Loader() {
+  const { progress } = useProgress();
+
   return (
-    <Html center>
-      <div style={{ color: "white" }}>Loading car...</div>
+    <Html fullscreen>
+      <div className="w-full h-full flex items-center justify-center bg-[#F8F9FA]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-16 h-16 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
+          <p className="text-black font-semibold text-xl">
+            {Math.round(progress)}%
+          </p>
+          <p className="text-gray-600">Loading car model...</p>
+        </div>
+      </div>
     </Html>
   );
 }
@@ -21,16 +31,8 @@ const Scene = () => {
 
       <Suspense fallback={<Loader />}>
         <Controls>
-          {/* <Environment background={true} files={["/hdr/studio_small_08_2k.hdr"]} /> */}
-          {/* <Environment
-            background={true}
-            preset="park"
-            ground={{ height: 5, radius: 150, scale: 10 }}
-          /> */}
           <Car />
-          {/* <Ground /> */}
           <ambientLight intensity={0.5} />
-          <spotLight intensity={80} color={0xffffff} position={[2, 5, 1]}/>
         </Controls>
       </Suspense>
     </>
