@@ -20,7 +20,7 @@ const Home = () => {
       {/* Show loader while loading */}
       {/* {isLoading && <Loader />} */}
       {/* LEFT: 3D VIEWER (70%) */}
-      <section className="flex-7 shrink-0 h-[calc(100vh-7rem)] md:h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-neutral-700 relative rounded-b-4xl md:rounded-none overflow-hidden">
+      <section className="flex-7 shrink-0 h-[calc(100vh-9rem)] md:h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-neutral-700 relative rounded-b-4xl md:rounded-none overflow-hidden">
         {/* Title overlay */}
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none text-center">
           <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-[linear-gradient(125deg,#ffffff,#9ca3af)] drop-shadow-md">
