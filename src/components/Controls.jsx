@@ -1,5 +1,5 @@
 // components/Controls.jsx
-import { Environment, OrbitControls, Stage } from "@react-three/drei";
+import { Environment, OrbitControls, Stage, useEnvironment } from "@react-three/drei";
 import { useEffect, useState } from "react";
 
 const Controls = ({ children }) => {
@@ -7,6 +7,9 @@ const Controls = ({ children }) => {
 
   useEffect(() => {
     setIsAndroid(/Android/i.test(navigator.userAgent));
+
+    // Preload HDR immediately
+    useEnvironment.preload({ files: "/hdr/kiara_1_dawn_1k.hdr" });
   }, []);
   return (
     <>
@@ -23,14 +26,28 @@ const Controls = ({ children }) => {
 
       {isAndroid ? (
         // Android: no Stage, just children
-        children
+        <>
+          <Environment
+            files="/hdr/kiara_1_dawn_1k.hdr" // Your local HDR file
+            background={false}
+            intensity={0.3} // ← Add this to control HDR brightness
+          />
+          <Stage
+            intensity={0.3}
+            environment={null} // Disable Stage's environment since we're using separate Environment component
+            shadows="contact"
+            adjustCamera={false}
+          >
+            {children}
+          </Stage>
+        </>
       ) : (
         // Desktop/iOS: Stage + local Environment
         <>
           <Environment
             files="/hdr/kiara_1_dawn_1k.hdr" // Your local HDR file
             background={false}
-            // intensity={0.3} // ← Add this to control HDR brightness
+            intensity={0.3} // ← Add this to control HDR brightness
           />
           <Stage
             intensity={0.3}
