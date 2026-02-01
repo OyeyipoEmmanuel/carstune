@@ -6,6 +6,7 @@ import Car from "./Car";
 // import Ground from "./Ground";
 
 import { Html, useProgress } from "@react-three/drei";
+import Ground from "./Ground";
 
 // Loading component (presentational)
 function Loader({ progress = 0 }) {
@@ -65,6 +66,7 @@ const Scene = () => {
         <Controls>
           {/* <Environment preset="city" background={false} /> */}
           <Car />
+          {/* <Ground/> */}
           {/* Add lights for Android since it doesn't have Stage */}
 
           <ambientLight intensity={isAndroid ? 1 : 0.3} />
