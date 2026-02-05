@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { useThree } from "@react-three/fiber";
-import { CarModel } from "../../CarModel";
+import { CarModel } from "./CarModel";
 
 
 // components/Car.jsx

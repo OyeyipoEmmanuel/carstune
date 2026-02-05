@@ -1,24 +1,32 @@
 // // components/Ground.jsx
-// import { MeshReflectorMaterial } from "@react-three/drei";
+import { Circle, MeshReflectorMaterial } from "@react-three/drei";
 
-// const Ground = () => {
-//   return (
-//     <mesh rotation={[-Math.PI / 2, 0, 0]} position-y={-2}>
-//       <planeGeometry args={[170, 170]} />
-//       <MeshReflectorMaterial
-//         blur={[300, 100]}
-//         resolution={2048}
-//         mixBlur={1}
-//         mixStrength={40}
-//         roughness={1}
-//         depthScale={1.2}
-//         minDepthThreshold={0.4}
-//         maxDepthThreshold={1.4}
-//         color="#101010"
-//         metalness={0.5}
-//       />
-//     </mesh>
-//   );
-// };
+const Ground = () => {
+  return (
+    <Circle
+      args={[1, 16]}
+      receiveShadow
+      scale={100}
+      rotation-x={-Math.PI / 2}
+      position-y={0}
+    >
+      <MeshReflectorMaterial
+        color={"#2f2e3b"}
+        envMapIntensity={0}
+        blur={[512, 512]}
+        mixBlur={1}
+        mixStrength={3}
+        mixContrast={1}
+        resolution={1024}
+        mirror={1}
+        depthScale={1}
+        minDepthThreshold={0.8}
+        maxDepthThreshold={1.8}
+        depthToBlurRatioBias={0.45}
+        roughness={1}
+      />
+    </Circle>
+  );
+};
 
-// export default Ground;
+export default Ground;
