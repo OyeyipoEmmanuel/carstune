@@ -1,4 +1,4 @@
-import Customization from "./Customization";
+import Customization from "./CustomizationPanel/Customization";
 
 const SideNav = () => {
   return (
