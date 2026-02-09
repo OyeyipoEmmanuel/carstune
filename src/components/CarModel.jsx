@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useChangeCarColor from "../store/useChangeCarColor";
 
 export function CarModel(props) {
+  
   const [modelPath, setModelPath] = useState(() => {
     // Determine path immediately on first render
     const isAndroid = /Android/i.test(navigator.userAgent);
