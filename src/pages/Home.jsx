@@ -33,7 +33,7 @@ const Home = () => {
         <div className="w-full h-full absolute top-0 pt-12 md:top-12 left-0 ">
           <Canvas
             dpr={isAndroid ? [1, 1] : [1, 2]}
-            camera={{ position: isAndroid ? [0, 1.5, 6.5] : [0, 1.5, 5], fov: 25 }}
+            camera={{ position: isAndroid ? [0, 1.5, 6.5] : [0, 2.5, 5], fov: 25 }}
             gl={{
               antialias: !isAndroid, // Disable only on Android
               powerPreference: "high-performance",
