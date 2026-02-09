@@ -1,5 +1,5 @@
 import { CircleX } from "lucide-react";
-import Customization from "./Customization";
+import Customization from "./CustomizationPanel/Customization";
 
 const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
   return (
@@ -19,7 +19,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
         />
       </div>
       <div className="flex flex-col h-full">
-        <Customization/>
+        <Customization />
       </div>
     </section>
   );
