@@ -35,7 +35,7 @@ const Controls = ({ children }) => {
           <Stage
             intensity={0.3}
             environment={null} // Disable Stage's environment since we're using separate Environment component
-            shadows="contact"
+            shadows={false}
             adjustCamera={false}
           >
             {children}
