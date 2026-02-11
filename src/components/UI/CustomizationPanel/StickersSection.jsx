@@ -25,7 +25,7 @@ const StickersSection = () => {
             
               <span className={`bg-slate-100 rounded-lg p-2 cursor-pointer ${currentHoodSticker === sticker ? "ring-2 ring-offset-2 ring-blue-500" : ""}`}>
                 {sticker != null ? (
-                <img src={`/stickers/${sticker}`} alt="Hood sticker" className="w-12 h-12 hover:scale-105 transition-all duration-300"/>) : (
+                <img src={`/stickers/${sticker}`} alt="Hood sticker" className="w-18 h-18 scale-125 object-contain hover:scale-105 transition-all duration-300"/>) : (
                     <Ban color="#e26f6f" width={48} height={48}/>
                 )}
               </span>
