@@ -33,7 +33,7 @@ const WheelSelection = () => {
             >
               {wheel != null && wheel.url ? (
                 <img
-                  src={`/src/assets/${wheel.url}`}
+                  src={`/tyre_preview/${wheel.url}`}
                   alt="Wheel options"
                   className="w-18 h-18 scale-125 object-contain hover:scale-105 transition-all duration-300"
                 />
