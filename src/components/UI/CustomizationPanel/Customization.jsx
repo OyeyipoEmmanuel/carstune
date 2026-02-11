@@ -2,6 +2,7 @@ import { useState } from "react";
 import useChangeCarColor from "../../../store/useChangeCarColor";
 import ColorSection from "./ColorSection";
 import StickersSection from "./StickersSection";
+import WheelSelection from "./WheelSelection";
 
 const Customization = () => {
  
@@ -16,12 +17,15 @@ const Customization = () => {
       </div>
 
       {/* Change Wheels */}
-      <div></div>
+      <div>
+        <WheelSelection/>
+      </div>
 
       {/* Hood Stickers Section */}
       <div>
         <StickersSection/>
       </div>
+
     </section>
   );
 };
