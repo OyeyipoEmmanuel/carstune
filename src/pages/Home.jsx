@@ -8,12 +8,9 @@ import MobileNav from "../components/UI/MobileNav";
 
 const Home = () => {
   const [openMobileNav, setOpenMobileNav] = useState(false);
-  const [isAndroid, setIsAndroid] = useState(false);
 
   // Detect if the user is on an Android device
-  useEffect(() => {
-    setIsAndroid(/Android/i.test(navigator.userAgent));
-  }, []);
+    const isAndroid = /Android/i.test(navigator.userAgent);
 
   return (
     <main className="w-full h-screen flex shrink-0 relative overflow-hidden bg-[#F8F9FA]">
