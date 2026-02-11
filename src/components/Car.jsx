@@ -1,23 +1,67 @@
-import { Suspense } from "react";
+import { Suspense, useMemo, lazy } from "react";
 import { useThree } from "@react-three/fiber";
-import { CarModel } from "./CarModel";
-import { CarWithStickerModel } from "../../CarWithStickerModel";
+import Wheels from "./Wheels";
+// import { CarWithStickerModelOptimized } from "./CarWithStickerModelOpt";
 
+// Lazy load the models
+const CarWithStickerModel = lazy(() =>
+  import("./CarWithStickerModel").then((module) => ({
+    default: module.CarWithStickerModel,
+  }))
+);
+const CarWithStickerModelOptimized = lazy(() =>
+  import("./CarWithStickerModelOpt").then((module) => ({
+    default: module.CarWithStickerModelOptimized,
+  }))
+);
 
-// components/Car.jsx
 const Car = () => {
-  const { viewport } = useThree(); // gives info about canvas size
+  const { viewport } = useThree();
   const isMobile = viewport.width < 6;
-  return (
-    // <mesh castShadow position={[0, 0.75, 0]}>
-    //   <boxGeometry args={[1, 1, 1]} />
-    //   <meshStandardMaterial color="#c00000" />
-    // </mesh>
 
+  const shouldUseLowQuality = useMemo(() => {
+    // Always use high quality in development
+    // const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+    // if (isDev) {
+    //   console.log("Development mode - using high quality model");
+    //   return false;
+    // }
+
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isMobileDevice = isAndroid || isIOS;
+
+    const isLowRAM = navigator.deviceMemory && navigator.deviceMemory < 4;
+    const conn =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
+    const isSlowConnection =
+      conn && (conn.effectiveType === "2g" || conn.effectiveType === "slow-2g");
+
+    console.log("Device Detection:", {
+      isMobileDevice,
+      deviceMemory: navigator.deviceMemory,
+      isLowRAM,
+      effectiveType: conn?.effectiveType,
+      isSlowConnection,
+      shouldUseLowQuality: isMobileDevice || isLowRAM || isSlowConnection,
+    });
+
+    return isMobileDevice || isLowRAM || isSlowConnection;
+  }, []);
+
+  const CarComponent = shouldUseLowQuality
+    ? CarWithStickerModelOptimized
+    : CarWithStickerModel;
+
+  console.log("Loading model:", shouldUseLowQuality ? "Optimized" : "Normal");
+
+  return (
     <Suspense fallback={null}>
-        {/* <FreeCarTestModel scale={2.5} /> */}
-        {/* <CarModel scale={isMobile ? 0.4 : 2.5} /> */}
-        <CarWithStickerModel scale={isMobile ? 0.4 : 2.5} />
+      <CarComponent scale={isMobile ? 0.4 : 2.5} />
+      <Wheels />
     </Suspense>
   );
 };
