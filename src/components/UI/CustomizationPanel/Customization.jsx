@@ -1,5 +1,3 @@
-import { useState } from "react";
-import useChangeCarColor from "../../../store/useChangeCarColor";
 import ColorSection from "./ColorSection";
 import StickersSection from "./StickersSection";
 import WheelSelection from "./WheelSelection";
