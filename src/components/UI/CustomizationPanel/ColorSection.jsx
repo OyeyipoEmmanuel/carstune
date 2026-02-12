@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import useChangeCarColor from "../../../store/useChangeCarColor";
 
 const ColorSection = () => {
@@ -17,11 +16,12 @@ const ColorSection = () => {
     // "#C9BE6A", // Muted Pastel Yellow
   ];
 
-  const [hexText, setHexText] = useState("");
+  // const [hexText, setHexText] = useState("");
 
   const handleColorChange = useChangeCarColor((state) => state.setNewColor);
   const currentColor = useChangeCarColor((state) => state.color);
-  //   };
+
+  
   return (
     <div>
       <h1 className="text-lg text-slate-900 font-semibold pb-4">
@@ -37,8 +37,6 @@ const ColorSection = () => {
             style={{ backgroundColor: color }}
             onClick={() => handleColorChange(color)}
           ></span>
-
-          // </span>
         ))}
       </div>
 
