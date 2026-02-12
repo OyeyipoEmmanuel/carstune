@@ -30,7 +30,7 @@ const Car = () => {
 
     const isAndroid = /Android/i.test(navigator.userAgent);
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isMobileDevice = isAndroid || isIOS;
+    const isMobileDevice = isAndroid;
 
     const isLowRAM = navigator.deviceMemory && navigator.deviceMemory < 4;
     const conn =
