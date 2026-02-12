@@ -2,9 +2,9 @@
 import { Suspense, useEffect, useState, useRef } from "react";
 import Controls from "./Controls";
 import Car from "./Car";
-import Ground from "./Ground";
 import { Html, useProgress } from "@react-three/drei";
 
+// Loader component to show progress
 function Loader({ progress = 0 }) {
   return (
     <Html fullscreen>
@@ -26,10 +26,10 @@ function Loader({ progress = 0 }) {
   );
 }
 
-// ✅ Compute ONCE outside component — never causes re-renders
+// Compute ONCE outside component — never causes re-renders
 const isAndroid = /Android/i.test(navigator.userAgent);
-const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-const isMobile = isAndroid || isIOS;
+// const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+const isMobile = isAndroid ;
 
 const Scene = () => {
   const { progress, active } = useProgress();
@@ -54,7 +54,6 @@ const Scene = () => {
         <Controls>
           <Car />
 
-          {/* ✅ Uses module-level constant — no state, no re-render */}
           <ambientLight intensity={isMobile ? 1 : 0.3} />
           <directionalLight
             position={[5, 5, 5]}
