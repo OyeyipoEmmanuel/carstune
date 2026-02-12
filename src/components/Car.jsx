@@ -1,7 +1,6 @@
 import { Suspense, useMemo, lazy } from "react";
 import { useThree } from "@react-three/fiber";
 import Wheels from "./Wheels";
-// import { CarWithStickerModelOptimized } from "./CarWithStickerModelOpt";
 
 // Lazy load the models
 const CarWithStickerModel = lazy(() =>
@@ -20,16 +19,9 @@ const Car = () => {
   const isMobile = viewport.width < 6;
 
   const shouldUseLowQuality = useMemo(() => {
-    // Always use high quality in development
-    // const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-
-    // if (isDev) {
-    //   console.log("Development mode - using high quality model");
-    //   return false;
-    // }
 
     const isAndroid = /Android/i.test(navigator.userAgent);
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     const isMobileDevice = isAndroid;
 
     const isLowRAM = navigator.deviceMemory && navigator.deviceMemory < 4;
