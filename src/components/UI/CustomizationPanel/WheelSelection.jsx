@@ -1,4 +1,4 @@
-import { Ban, RotateCcw } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import useChangeWheels from "../../../store/useChangeWheels";
 
 const wheelOptions = [

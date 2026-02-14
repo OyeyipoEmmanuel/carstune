@@ -3,17 +3,17 @@ import useChangeCarColor from "../../../store/useChangeCarColor";
 const ColorSection = () => {
   const carColors = [
     // "#0F0F0F", // Deep Black (was #000000)
-    "#554FA8", // Dark Slate Purple2
-    // "#178F86", // Muted Teal
+    // "#554FA8", // Dark Slate Purple2
+    "#178F86", // Muted Teal
     "#C9A227", // Dark Warm Gold3
-    // "#D45A96", // Muted Rose Pink
-    // "#6F3A17", // Deep Saddle Brown
+    "#D45A96", // Muted Rose Pink
+    "#6F3A17", // Deep Saddle Brown
     // "#246B47", // Dark Sea Green
     "#9E9E9E", // Dark Silver Metallic1
     // "#355E86", // Dark Steel Blue
-    "#B05A22", // Dark Copper2
+    // "#B05A22", // Dark Copper2
     // "#7B5DB8", // Dark Medium Purple
-    // "#C9BE6A", // Muted Pastel Yellow
+    "#C9BE6A", // Muted Pastel Yellow
   ];
 
   // const [hexText, setHexText] = useState("");

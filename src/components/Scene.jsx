@@ -29,7 +29,7 @@ function Loader({ progress = 0 }) {
 // Compute ONCE outside component — never causes re-renders
 const isAndroid = /Android/i.test(navigator.userAgent);
 // const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-const isMobile = isAndroid ;
+const isMobile = isAndroid;
 
 const Scene = () => {
   const { progress, active } = useProgress();
@@ -54,17 +54,44 @@ const Scene = () => {
         <Controls>
           <Car />
 
-          <ambientLight intensity={isMobile ? 1 : 0.3} />
-          <directionalLight
-            position={[5, 5, 5]}
-            intensity={1}
-            castShadow={!isMobile}
-            shadow-mapSize={isMobile ? [512, 512] : [2048, 2048]}
-          />
+          {isMobile ? (
+            // Mobile: Simplified lighting (3-4 lights max)
+            <>
+              <ambientLight intensity={1.5} />
+              <hemisphereLight
+                skyColor="#ffffff"
+                groundColor="#888888"
+                intensity={1.2}
+              />
+              <directionalLight position={[5, 8, 5]} intensity={1} />
+              <directionalLight position={[-5, 6, 5]} intensity={0.7} />
+            </>
+          ) : (
+            // Desktop: Full lighting
+            <>
+              <ambientLight intensity={0.8} />
+              <hemisphereLight
+                skyColor="#ffffff"
+                groundColor="#888888"
+                intensity={1}
+              />
+              <directionalLight
+                position={[5, 8, 5]}
+                intensity={1.2}
+                castShadow
+                shadow-mapSize={[1024, 1024]}
+              />
+              <directionalLight position={[-5, 6, 5]} intensity={0.8} />
+              <directionalLight position={[0, 6, -5]} intensity={0.6} />
+              <directionalLight position={[8, 4, 0]} intensity={0.5} />
+              <directionalLight position={[-8, 4, 0]} intensity={0.5} />
+              <pointLight position={[0, 10, 0]} intensity={0.4} distance={20} />
+            </>
+          )}
         </Controls>
       </Suspense>
     </>
   );
 };
 
-export default Scene; 
+export default Scene;
