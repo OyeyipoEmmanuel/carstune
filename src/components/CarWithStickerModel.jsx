@@ -10,8 +10,7 @@ export function CarWithStickerModel(props) {
   const { nodes, materials } = useGLTF("/model/carWithStickerModel.glb");
 
   const selectedWheel = useChangeWheels((state) => state.selectedWheel);
-  console.log("Selected wheel in CarModel:", selectedWheel);
-
+  
   // Hide default wheels when sport or offroad is selected
   const showDefaultWheels = selectedWheel === "default";
 
@@ -26,7 +25,7 @@ export function CarWithStickerModel(props) {
 
   //Adding custom color
   const carColor = useChangeCarColor((state) => state.color);
-  console.log("Car color in CarModel:", carColor);
+
 
   const hoodSticker = useChangeHoodSticker((state) => state.hoodSticker);
 

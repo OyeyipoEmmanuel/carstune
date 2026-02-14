@@ -19,7 +19,6 @@ const Car = () => {
   const isMobile = viewport.width < 6;
 
   const shouldUseLowQuality = useMemo(() => {
-
     const isAndroid = /Android/i.test(navigator.userAgent);
     // const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     const isMobileDevice = isAndroid;
@@ -30,25 +29,18 @@ const Car = () => {
       navigator.mozConnection ||
       navigator.webkitConnection;
     const isSlowConnection =
-      conn && (conn.effectiveType === "2g" || conn.effectiveType === "slow-2g");
+      conn && (
+        conn.effectiveType === "2g" ||
+        conn.effectiveType === "slow-2g" ||
+        conn.effectiveType === "3g"
+      );
 
-    console.log("Device Detection:", {
-      isMobileDevice,
-      deviceMemory: navigator.deviceMemory,
-      isLowRAM,
-      effectiveType: conn?.effectiveType,
-      isSlowConnection,
-      shouldUseLowQuality: isMobileDevice || isLowRAM || isSlowConnection,
-    });
-
-    return isMobileDevice || isLowRAM || isSlowConnection;
+    return (isMobileDevice && isLowRAM) || isSlowConnection;
   }, []);
 
   const CarComponent = shouldUseLowQuality
     ? CarWithStickerModelOptimized
     : CarWithStickerModel;
-
-  console.log("Loading model:", shouldUseLowQuality ? "Optimized" : "Normal");
 
   return (
     <Suspense fallback={null}>
