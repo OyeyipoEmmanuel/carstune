@@ -28,14 +28,14 @@ const Controls = ({ children }) => {
         // Android: no Stage, just children
         <>
           <Environment
-            files="/hdr/kiara_1_dawn_1k.hdr" // Your local HDR file
+            files="/hdr/kiara_1_dawn_1k.hdr"
             background={false}
-            intensity={0.3} // ← Add this to control HDR brightness
+            intensity={0.3}
           />
           <Stage
             intensity={0.3}
-            environment={null} // Disable Stage's environment since we're using separate Environment component
-            shadows="contact"
+            environment={null}
+            shadows={false}
             adjustCamera={false}
           >
             {children}
@@ -45,13 +45,13 @@ const Controls = ({ children }) => {
         // Desktop/iOS: Stage + local Environment
         <>
           <Environment
-            files="/hdr/kiara_1_dawn_1k.hdr" // Your local HDR file
+            files="/hdr/kiara_1_dawn_1k.hdr" 
             background={false}
-            intensity={0.3} // ← Add this to control HDR brightness
+            intensity={0.3}
           />
           <Stage
             intensity={0.3}
-            environment={null} // Disable Stage's environment since we're using separate Environment component
+            environment={null}
             shadows="contact"
             adjustCamera={false}
           >

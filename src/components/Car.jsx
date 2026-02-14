@@ -1,21 +1,51 @@
-import { Suspense } from "react";
+import { Suspense, useMemo, lazy } from "react";
 import { useThree } from "@react-three/fiber";
-import { CarModel } from "./CarModel";
+import Wheels from "./Wheels";
 
+// Lazy load the models
+const CarWithStickerModel = lazy(() =>
+  import("./CarWithStickerModel").then((module) => ({
+    default: module.CarWithStickerModel,
+  }))
+);
+const CarWithStickerModelOptimized = lazy(() =>
+  import("./CarWithStickerModelOpt").then((module) => ({
+    default: module.CarWithStickerModelOptimized,
+  }))
+);
 
-// components/Car.jsx
 const Car = () => {
-  const { viewport } = useThree(); // gives info about canvas size
+  const { viewport } = useThree();
   const isMobile = viewport.width < 6;
-  return (
-    // <mesh castShadow position={[0, 0.75, 0]}>
-    //   <boxGeometry args={[1, 1, 1]} />
-    //   <meshStandardMaterial color="#c00000" />
-    // </mesh>
 
+  const shouldUseLowQuality = useMemo(() => {
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    // const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isMobileDevice = isAndroid;
+
+    const isLowRAM = navigator.deviceMemory && navigator.deviceMemory < 4;
+    const conn =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
+    const isSlowConnection =
+      conn && (
+        conn.effectiveType === "2g" ||
+        conn.effectiveType === "slow-2g" ||
+        conn.effectiveType === "3g"
+      );
+
+    return (isMobileDevice && isLowRAM) || isSlowConnection;
+  }, []);
+
+  const CarComponent = shouldUseLowQuality
+    ? CarWithStickerModelOptimized
+    : CarWithStickerModel;
+
+  return (
     <Suspense fallback={null}>
-        {/* <FreeCarTestModel scale={2.5} /> */}
-        <CarModel scale={isMobile ? 0.4 : 2.5} />
+      <CarComponent scale={isMobile ? 0.4 : 2.5} />
+      <Wheels />
     </Suspense>
   );
 };

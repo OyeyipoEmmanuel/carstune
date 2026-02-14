@@ -2,7 +2,7 @@
 import { create } from "zustand";
 
 const useChangeCarColor = create((set) => ({
-    color: "#0F0F0F",
+    color: "#C9A227",
     setNewColor: (newColor) => set({color: newColor})
 }))
 
